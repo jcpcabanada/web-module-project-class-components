@@ -3,6 +3,7 @@ import React from 'react';
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 
+import './style.css';
 
 const tasks = [
     {
@@ -32,8 +33,8 @@ class App extends React.Component {
     handleToggle = () => {
         this.setState({
             ...this.state,
-            tasks: this.state.tasks.filter(item => {
-                return (!item.completed);
+            tasks: this.state.tasks.filter(task => {
+                return (!task.completed);
             })
         });
     }
@@ -50,6 +51,18 @@ class App extends React.Component {
         })
     }
 
+    handleToggleItem = (item) => {
+        this.setState({
+            ...this.state,
+            tasks: this.state.tasks.map(g => {
+                if (g.id === item.id) {
+                    return { ...g, purchased: !g.purchased }
+                } else {
+                    return g;
+                }
+            })
+        })
+    }
 
 
     render() {
@@ -59,8 +72,8 @@ class App extends React.Component {
                     <h2> Todo List: MVP</h2>
                     <TodoForm handleAddTask={this.handleAddTask}/>
                 </div>
-                {/*<TodoList />*/}
-                <button>Clear Completed</button>
+                <TodoList handleToggleItem={this.handleToggleItem} tasks={this.state.tasks}/>
+                <button onClick={this.handleToggle} className="clear-btn">Clear Completed</button>
             </div>
         );
     }
