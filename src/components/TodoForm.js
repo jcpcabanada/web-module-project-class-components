@@ -24,14 +24,18 @@ class TodoForm extends React.Component {
 
     render() {
         return (
-            <form>
-                <input
-                    onChange={this.handleChanges}
-                    type="text"
-                    name="task"
-                />
-                <button onClick={this.handleClick}> Add Todo</button>
-            </form>
+            <div>
+                <form>
+                    <input
+                        onChange={this.handleChanges}
+                        type="text"
+                        name="task"
+                    />
+                    <button onClick={this.handleClick}> Add Todo</button>
+                </form>
+                <button onClick={this.props.handleToggle} className="clear-btn">Clear Completed</button>
+            </div>
+
         )
     }
 

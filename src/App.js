@@ -56,7 +56,7 @@ class App extends React.Component {
             ...this.state,
             tasks: this.state.tasks.map(g => {
                 if (g.id === item.id) {
-                    return { ...g, purchased: !g.purchased }
+                    return { ...g, completed: !g.completed }
                 } else {
                     return g;
                 }
@@ -66,14 +66,14 @@ class App extends React.Component {
 
 
     render() {
+        console.log(this.state);
         return (
             <div className="App">
                 <div className="Header">
                     <h2> Todo List: MVP</h2>
-                    <TodoForm handleAddTask={this.handleAddTask}/>
+                    <TodoForm handleAddTask={this.handleAddTask} handleToggle={this.handleToggle}/>
                 </div>
                 <TodoList handleToggleItem={this.handleToggleItem} tasks={this.state.tasks}/>
-                <button onClick={this.handleToggle} className="clear-btn">Clear Completed</button>
             </div>
         );
     }

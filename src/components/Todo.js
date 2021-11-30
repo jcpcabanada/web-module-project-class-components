@@ -3,6 +3,7 @@ import React from "react";
 const Task = props => {
     const handleClick = () => {
         props.handleToggleItem(props.item);
+        console.log("click", props);
     }
 
     return (
